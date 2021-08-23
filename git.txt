@@ -1,0 +1,4 @@
+cd "\Program Files\Git\bin"
+git
+git config --global user.email "liucangsong@gmail.com"
+git config --global user.name "liucangsong"
