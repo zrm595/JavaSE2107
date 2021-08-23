@@ -6,7 +6,7 @@ package homework.day01;
  * 1:用户名不能为空(只要有一个字符)
  * 2:用户名必须在20个字以内
  * @author Xiloer
- *
+ * 123
  */
 public class Test02 {
     public static void main(String[] args) {
