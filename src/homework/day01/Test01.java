@@ -33,7 +33,24 @@ public class Test01 {
 	 * 
 	 */
 	public static String getExtByName(String name) {
-
-
+		// 截取文件名: logo.png logo.jpeg logo.master.png
+		//           jquery.1.1.2.js
+		// 业务计算规则:截取点后面的所有个字符
+		// substring(开始,结束) 按照范围截取, 按照长度截取
+		// substring(开始) 从开始截取到末尾
+		// indexOf() 找到字符/字符串的位置
+		// lastIndexOf() 从后向前找到字符
+		//找到 . 所在的位置 index
+		int index = name.lastIndexOf('.');
+		System.out.println("index:"+index);
+		//从 . 的下一个位置开始截取子字符串
+		String ext = name.substring(index+1);
+		System.out.println("ext:"+ext);
+		return ext;
 	}
 }
+
+
+
+
+

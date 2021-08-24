@@ -12,9 +12,10 @@ package homework.day01;
  */
 public class Test04 {
 	public static void main(String[] args) {
-		String fileName = "123.png";
+		String fileName = "123.PNG";
 		//startsWith是用来判断以指定的内容开始的
-		boolean check = fileName.startsWith(".png");
+		//boolean check = fileName.startsWith(".png");
+		boolean check = fileName.toLowerCase().endsWith(".png");
 
 		if(check) {
 			System.out.println("是png图片!");
