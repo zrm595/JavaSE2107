@@ -35,13 +35,13 @@ public class Test06 {
 		String chs = "abcdefghijkmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXY3456789";
 		Random random = new Random();
 		int length = chs.length();
-		StringBuilder buf = new StringBuilder();
+		StringBuilder buf = new StringBuilder(4);
 		//生成4位验证码
 		buf.append(chs.charAt(random.nextInt(length)))
 				.append(chs.charAt(random.nextInt(length)))
 				.append(chs.charAt(random.nextInt(length)))
 				.append(chs.charAt(random.nextInt(length)));
-		//将生成的验证码转换为 String类型, 为了后续调用忽略大小写比较做装备
+		//将生成的验证码转换为 String类型, 为了后续调用忽略大小写比较做准备
 		String code = buf.toString();
 		System.out.println(code);
 
