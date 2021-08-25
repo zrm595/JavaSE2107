@@ -16,20 +16,28 @@ public class FileFilterDemo {
          * Filter: 过滤器
          */
         //过滤条件: 筛选 .txt 的文件
-        FileFilter filter = new FileFilter() {
-            @Override //过滤器的筛选方法
-            public boolean accept(File pathname) {
-                //写筛选逻辑: pathname 代表每个被赛选的文件
-                //先找到文件名, 检查文件名的末尾是否以.txt为结束
-                //方法返回true表示文件是被选定的文件,
-                //返回false就是被忽略的文件
-                String name = pathname.getName();
-                return name.endsWith(".txt");
-            }
-        };
+//        FileFilter filter = new FileFilter() {
+//            @Override //过滤器的筛选方法
+//            public boolean accept(File pathname) {
+//                //写筛选逻辑: pathname 代表每个被赛选的文件
+//                //先找到文件名, 检查文件名的末尾是否以.txt为结束
+//                //方法返回true表示文件是被选定的文件,
+//                //返回false就是被忽略的文件
+//                String name = pathname.getName();
+//                return name.endsWith(".txt");
+//            }
+//        };
         File dir = new File("./");
         if (dir.isDirectory()){
-            File[] files = dir.listFiles(filter);
+            //listFiles 在执行期间会自动调用 filter中的方法
+            //File[] files = dir.listFiles(filter);
+            //将匿名内部类直接写到listFiles方法的参数上,使代码更加紧凑
+            File[] files = dir.listFiles(new FileFilter() {
+                @Override
+                public boolean accept(File pathname) {
+                    return pathname.getName().endsWith(".txt");
+                }
+            });
             for(File file: files){
                 System.out.println(file);
             }
