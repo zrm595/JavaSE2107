@@ -24,31 +24,36 @@ import java.util.Scanner;
  */
 public class Test05 {
 	public static void main(String[] args) {
-//		Person p = new Person();
-//		Scanner scanner = new Scnner(system.in);
-//		System.out.println("请输入姓名:");
-//		String name = scanner.nextLine();
-//		if(p.getName().length()==0) {
-//			System.out.println("姓名不能为空!");
-//		}else{
-//			p.setName(name); //OK
-//		}
-//		System.out.println("请输入年龄:");
-//		int age = scanner.nextInt();
-//		if(p.getAge()<0&&p.getAge()>100) {
-//			System.out.println("年龄不合法!");
-//		}else{
-//			p.age = age;
-//		}
-//		System.out.println("姓名:"+p.name);
-//		System.out.println("年龄:"+p.age);
+		Person p = new Person();
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("请输入姓名:");
+		String name = scanner.nextLine();
+		//空指针异常: 当一个引用类型变量的值为null, 在访问了这个
+		// 变量属性方法或者数组元素时候, 发生空指针异常
+		// 发生条件有两个: 变量为null, 访问属性/方法/成员
+		// 解决办法: 将变量合理赋值, 在访问之前用if判断是否空,如果空不访问
+		if(name.length()==0) {
+			System.out.println("姓名不能为空!");
+		}else{
+			p.setName(name); //OK
+		}
+		System.out.println("请输入年龄:");
+		int age = scanner.nextInt();
+		if(age<0 || age>100) {
+			System.out.println("年龄不合法!");
+		}else{
+			//p.age = age;
+			p.setAge(age);
+		}
+		System.out.println("姓名:"+p.getName());
+		System.out.println("年龄:"+p.getAge());
 	}
 	
 }
 
 class Person{
-	private String name;
-	private int age;
+	private String name; //null
+	private int age; //0
 	public String getName() {
 		return name;
 	}

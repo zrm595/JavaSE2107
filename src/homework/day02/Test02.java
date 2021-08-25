@@ -24,7 +24,7 @@ package homework.day02;
  */
 public class Test02 {
 	public static void main(String[] args) {
-		String path = "http://localhost:8088/myweb/reg?name=zhangsan";
+		String path = "http://localhost:8088/myweb/reg?name=zhangsan&pwd=123456&nick=san&age=16";
 		/*
 		 * 将上述字符串按照"?"拆分为两部分并输出
 		 * ?左侧在控制台输出内容为:
@@ -33,8 +33,12 @@ public class Test02 {
 		 * ?右侧在控制台输出内容为:
 		 * 参数:name=zhangsan
 		 */
+		String[] data = path.split("\\?");
+		String query = data[0];
+		String param = data[1];
+		System.out.println("请求:"+query);
+		System.out.println("参数:"+param);
 
-		
 		/*
 		 * 进一步练习:
 		 */
@@ -49,7 +53,23 @@ public class Test02 {
 		 * 参数名:pwd,参数值:123456
 		 * ...
 		 */
+		data = param.split("&");
+		for(String str:data){
+			//System.out.println(str);
+			String[] p = str.split("=");
+			String name = p[0];
+			String value= p[1];
+			System.out.println("参数名:"+name+", 参数值:"+value);
+		}
 
+		data = param.split("[&=]");
+		for(int i=0; i<data.length; i+=2 ){
+			//i=   0 2 4 6  name
+			//i+1 =1 3 5 7  value
+			String name = data[i];
+			String value = data[i+1];
+			System.out.println("参数名:"+name+", 参数值:"+value);
+		}
 	}
 }
 
