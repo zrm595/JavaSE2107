@@ -24,24 +24,24 @@ import java.util.Scanner;
  */
 public class Test05 {
 	public static void main(String[] args) {
-		Person p = new Person();
-		Scanner scanner = new Scnner(system.in);
-		System.out.println("请输入姓名:");
-		String name = scanner.nextLine();
-		if(p.getName().length()==0) {
-			System.out.println("姓名不能为空!");
-		}else{
-			p.setName(name); //OK
-		}
-		System.out.println("请输入年龄:");
-		int age = scanner.nextInt();
-		if(p.getAge()<0&&p.getAge()>100) {
-			System.out.println("年龄不合法!");
-		}else{
-			p.age = age;
-		}
-		System.out.println("姓名:"+p.name);
-		System.out.println("年龄:"+p.age);
+//		Person p = new Person();
+//		Scanner scanner = new Scnner(system.in);
+//		System.out.println("请输入姓名:");
+//		String name = scanner.nextLine();
+//		if(p.getName().length()==0) {
+//			System.out.println("姓名不能为空!");
+//		}else{
+//			p.setName(name); //OK
+//		}
+//		System.out.println("请输入年龄:");
+//		int age = scanner.nextInt();
+//		if(p.getAge()<0&&p.getAge()>100) {
+//			System.out.println("年龄不合法!");
+//		}else{
+//			p.age = age;
+//		}
+//		System.out.println("姓名:"+p.name);
+//		System.out.println("年龄:"+p.age);
 	}
 	
 }
