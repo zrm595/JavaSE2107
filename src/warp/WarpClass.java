@@ -44,5 +44,42 @@ public class WarpClass {
         System.out.println(t2-t1);
         System.out.println(t3-t2);
 
+        /*
+         * 包装类型, 为了优化性能利用常量池复用了 -128~127之间的
+         *     整数包装类型对象.
+         *    -128~127 之间的Integer类型对象被替换同一个对象
+         */
+        Integer i1 = -20;
+        Integer i2 = -20;
+        System.out.println(i1 == i2); //true
+        i1 = 128;
+        i2 = 128;
+        System.out.println(i1 == i2); //false
+
+        /*
+         * 包装类型提供常用API
+         * - 提供了数据类型的最大最小值常量
+         * - 提供了将10进制字符串转换为 对应数据类型的方法
+         */
+        int max = Integer.MAX_VALUE;
+        int min = Integer.MIN_VALUE;
+        long lmax = Long.MAX_VALUE;
+        long lmin = Long.MIN_VALUE;
+        System.out.println(max);
+        System.out.println(min);
+        System.out.println(lmax);
+        System.out.println(lmin);
+
+        /*
+         * 包装类提供 将 10进制字符串 转换为Java数据类型的方法
+         * 如果参数不能10进制字符串,将出现"格式化异常"
+         */
+        String str = "1234.9"; //10进制整数字符串
+        //String str = "1234.9"; 不是10进制整数,不能转换
+        int num = Integer.parseInt(str);
+        str = "123.56"; //10进制小数字符串
+        double dnum = Double.parseDouble(str);
+        System.out.println(num);
+        System.out.println(dnum);
     }
 }
