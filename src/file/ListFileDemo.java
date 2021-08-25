@@ -18,9 +18,24 @@ public class ListFileDemo {
         File dir = new File("./笔记");
         //在文件夹上调用 listFiles()会返回文件夹中全部的文件和文件夹
         files = dir.listFiles();
+        /*
+         * Java 5 提供了增强for循环(for each循环), 用于替换传统for循环
+         * 原因是 代码短!!! for(File f: files)
+         */
         for(File f: files){
+        //for (int i=0; i<files.length; i++){
+        //    File f = files[i];
             System.out.println(f);
         }
+        /*
+         * File 提供了API 方法用于检查是文件还是文件夹
+         * - isFile() 如果当前对象是一个文件则返回true否则返回false
+         * - isDirectory() 如果当前对象是一个文件夹返回true, 否则false
+         */
+        System.out.println(file.isDirectory()); //false
+        System.out.println(file.isFile());      //true
+        System.out.println(dir.isDirectory());  //true
+        System.out.println(dir.isFile());       //false
 
 
     }
