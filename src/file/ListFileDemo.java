@@ -37,6 +37,19 @@ public class ListFileDemo {
         System.out.println(dir.isDirectory());  //true
         System.out.println(dir.isFile());       //false
 
+        /*
+         * 改进版本: 如果当前对象是一个目录(文件夹),再执行列出
+         * 文件夹内容的功能.
+         *  ./ 表示当前文件夹, 这里就是当前项目文件夹
+         */
+        dir = new File("./");
+        System.out.println("列出当前目录内容:");
+        if(dir.isDirectory()){
+            File[] files1 = dir.listFiles();
+            for (File f: files1){
+                System.out.println(f);
+            }
+        }
 
     }
 }
