@@ -15,11 +15,18 @@ public class CreateNewFile {
          * - 如果创建时候文件系统不能写,会出现异常
          */
         File file = new File("./test.txt");
-        boolean created = file.createNewFile();
-        if (created){
-            System.out.println("创建成功!");
+//        boolean created = file.createNewFile();
+//        if (created){
+//            System.out.println("创建成功!");
+//        }else {
+//            System.out.println("创建失败!");
+//        }
+
+        if (! file.exists()){
+            file.createNewFile();
+            System.out.println("创建了文件");
         }else {
-            System.out.println("创建失败!");
+            System.out.println("文件已经存在");
         }
 
     }
