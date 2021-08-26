@@ -11,12 +11,12 @@ public class CopyDemo02 {
          * 利用缓冲区复制文件
          */
         FileInputStream in = new FileInputStream("./image.jpg");
-        FileOutputStream out = new FileOutputStream("./image_cp.jpg");
+        FileOutputStream out = new FileOutputStream("./img.jpg");
         long t1 = System.currentTimeMillis();
         byte[] bytes = new byte[1024*8];
         int n;
         while ((n = in.read(bytes))!=-1){
-            out.write(bytes);
+            out.write(bytes,0,n);
         }
         in.close();
         out.close();
