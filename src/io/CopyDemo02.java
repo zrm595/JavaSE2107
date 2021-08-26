@@ -3,7 +3,6 @@ package io;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class CopyDemo02 {
     public static void main(String[] args) throws IOException {
