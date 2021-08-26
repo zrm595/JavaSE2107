@@ -28,14 +28,16 @@ public class CopyDemo01 {
          *       0        1        2
          * 指针                    ^
          */
-        int b;
-        while ((b = in.read())!=-1){
+        long t1 = System.currentTimeMillis();
+        int b; //用于保存每次读取的一个字节数据
+        while ((b = in.read())!=-1){ //读取一个字节
             //不要在循环体中再次调用 read()!!!
-            out.write(b);
+            out.write(b); //写出一个字节
         }
-        in.close();
-        out.close();
-        System.out.println("复制完毕");
+        in.close(); //关闭文件夹
+        out.close();//关闭文件夹
+        long t2 = System.currentTimeMillis();
+        System.out.println("复制完毕, 耗时:"+(t2-t1));
     }
 }
 
