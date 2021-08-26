@@ -30,11 +30,12 @@ public class CopyDemo01 {
          */
         int b;
         while ((b = in.read())!=-1){
-            //不要再次调用 read()
+            //不要在循环体中再次调用 read()!!!
             out.write(b);
         }
         in.close();
         out.close();
+        System.out.println("复制完毕");
     }
 }
 
