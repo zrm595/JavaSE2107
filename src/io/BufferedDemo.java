@@ -6,6 +6,9 @@ public class BufferedDemo {
     public static void main(String[] args) throws IOException {
         /*
          * 缓冲流案例
+         * - 在改变IO代码情况下, 可以为程序添加缓冲区, 提升性能
+         * - 建议所有文件访问时候, 都有添加缓冲流!
+         * - 缓冲流是高级流, 必须依赖其他流
          */
         FileInputStream fis = new FileInputStream("./image.jpg");
         //将缓冲流套在文件输入流的外面, 为文件流扩展了缓冲区. 扩展后不要再使用
