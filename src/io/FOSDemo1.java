@@ -36,6 +36,7 @@ public class FOSDemo1 {
         fos.write(n);
         fos.write(51);
         fos.write(52);
+        fos.write(-1);
         /*
          * 文件使用完毕, 务必关闭 close()
          */
