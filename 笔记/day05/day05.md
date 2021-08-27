@@ -158,3 +158,90 @@ java.io.InputStreamReader和OutputStreamWriter
 
 它们是字符流非常常用的一对实现类同时也是一对高级流,实际开发中我们不直接操作它们,但是它们在流连接中是非常重要的一环.
 
+![image-20210827140348356](image-20210827140348356-16300442303643.png)
+
+```java
+package io;
+
+import java.io.*;
+
+/**
+ * 字符流
+ * java将IO中的流按照读写数据的单位划分为字节流与字符流
+ * 字节流的超类:java.io.InputStream和OutputStream
+ * 字符流的超类:java.io.Reader和Writer
+ * 字符流是以字符(char)为最小单位读写数据的,因此字符流仅适合读写文本数据.
+ *
+ *
+ * 转换流
+ * java.io.InputStreamReader和OutputStreamWriter
+ * 它们是常用的字符流实现类,实际开发中我们通常不会直接操作这两个流,但是在流连接中它们是重要
+ * 的一环.
+ *
+ */
+public class OSWDemo {
+    public static void main(String[] args) throws IOException {
+
+        FileOutputStream fos = new FileOutputStream("osw.txt");
+        //第二个参数为字符集,通过当前字符流写出的字符都会按照该字符集转换为字节
+        OutputStreamWriter osw = new OutputStreamWriter(fos,"UTF-8");
+
+        String str = "苍老师:吃个桃桃~";
+        osw.write(str);
+        osw.write("嗯~~好凉凉~");
+
+        System.out.println("写出完毕!");
+        osw.close();
+
+
+
+    }
+}
+```
+
+##### 读取文本数据
+
+```java
+package io;
+
+import java.io.*;
+
+/**
+ * 使用转换流读取文本数据
+ */
+public class ISRDemo {
+    public static void main(String[] args) throws IOException {
+        FileInputStream fis = new FileInputStream("osw.txt");
+        InputStreamReader isr = new InputStreamReader(fis,"UTF-8");
+        /*
+            字符输入流也提供了read方法用于读取字符.
+            int read()
+            读取一个字符,并以int型返回,若返回的int值为-1则表示读取到了末尾.
+         */
+        int d;
+        while((d = isr.read()) != -1) {
+            char c = (char) d;
+            System.out.print(c);
+        }
+        isr.close();
+
+    }
+}
+```
+
+##### 转换流的意义:
+
+实际开发中我们还有功能更好用的字符高级流.但是其他的字符高级流都有一个共通点:不能直接连接在字节流上.而实际操作设备的流都是低级流同时也都是字节流.因此不能直接在流连接中串联起来.转换流是一对可以连接在字节流上的字符流,其他的高级字符流可以连接在转换流上.在流连接中起到"转换器"的作用(负责字符与字节的实际转换)
+
+
+
+#### 缓冲字符流
+
+##### 缓冲字符输出流:java.io.PrintWriter
+
+java.io.BufferedWriter和BufferedReader
+
+缓冲字符流内部也有一个缓冲区,读写文本数据以块读写形式加快效率.并且缓冲流有一个特别的功能:可以按行读写文本数据.
+
+java.io.PrintWriter具有自动行刷新的缓冲字符输出流,实际开发中更常用.它内部总是会自动连接BufferedWriter作为块写加速使用.
+
