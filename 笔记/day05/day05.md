@@ -315,3 +315,85 @@ public class PWDemo2 {
 
 如果实例化PW时第一个参数传入的是一个流，则此时可以再传入一个boolean型的参数，此值为true时就打开了自动行刷新功能。 即: 每当我们用PW的println方法写出一行字符串后会自动flush.
 
+```java
+package io;
+
+import java.io.*;
+import java.util.Scanner;
+
+/**
+ * 简易记事本
+ * 程序启动后,要求将控制台输入的每一行字符串都按行写入到文件note.txt中
+ * 当单独输入exit时程序退出.
+ * 要求:自行完成流连接
+ */
+public class PWDemo3 {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+        FileOutputStream fos = new FileOutputStream("note.txt");
+        OutputStreamWriter osw = new OutputStreamWriter(fos,"UTF-8");
+        BufferedWriter bw = new BufferedWriter(osw);
+        /*
+            在流连接中使用PrintWriter时,可以传入第二个参数,该值为true时就打开了自动
+            行刷新功能,此时每当我们调用一次println方法写出一行字符串后就会自动flush
+         */
+        PrintWriter pw = new PrintWriter(bw,true);
+
+//        PrintWriter pw = new PrintWriter(
+//                new BufferedWriter(
+//                        new OutputStreamWriter(
+//                                new FileOutputStream("note.txt"),"UTF-8"
+//                        )
+//                )
+//        );
+
+        Scanner scanner = new Scanner(System.in);
+        while(true){
+            String line = scanner.nextLine();
+            if("exit".equals(line)){
+                break;
+            }
+            pw.println(line);
+        }
+
+        pw.close();
+    }
+}
+```
+
+##### 缓冲字符输入流:java.io.BufferedReader
+
+是一个高级的字符流，特点是块读文本数据，并且可以按行读取字符串。
+
+```java
+package io;
+
+import java.io.*;
+
+/**
+ * 使用缓冲字符输入流读取文本数据
+ */
+public class BRDemo {
+    public static void main(String[] args) throws IOException {
+        /*
+            将当前程序源代码读取出来并输出到控制台上
+         */
+        FileInputStream fis = new FileInputStream("./src/io/BRDemo.java");
+        InputStreamReader isr = new InputStreamReader(fis);
+        BufferedReader br = new BufferedReader(isr);
+        String line;
+        /*
+            String readLine()
+            读取一行字符串,返回的字符串不包含这行最后的换行符.如果此行为空行则返回值为空字符串.
+            当流读取到了末尾时会返回null.
+         */
+        while((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
+        br.close();
+    }
+}
+```
+
+##### IO总结
+
+![image-20210827170503447](image-20210827170503447-16300551052725.png)
