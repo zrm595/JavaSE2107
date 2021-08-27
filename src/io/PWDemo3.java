@@ -14,6 +14,10 @@ public class PWDemo3 {
         FileOutputStream fos = new FileOutputStream("note.txt");
         OutputStreamWriter osw = new OutputStreamWriter(fos,"UTF-8");
         BufferedWriter bw = new BufferedWriter(osw);
+        /*
+            在流连接中使用PrintWriter时,可以传入第二个参数,该值为true时就打开了自动
+            行刷新功能,此时每当我们调用一次println方法写出一行字符串后就会自动flush
+         */
         PrintWriter pw = new PrintWriter(bw,true);
 
 //        PrintWriter pw = new PrintWriter(
