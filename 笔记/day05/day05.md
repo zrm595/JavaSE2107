@@ -245,3 +245,73 @@ java.io.BufferedWriter和BufferedReader
 
 java.io.PrintWriter具有自动行刷新的缓冲字符输出流,实际开发中更常用.它内部总是会自动连接BufferedWriter作为块写加速使用.
 
+![image-20210827154416456](image-20210827154416456.png)
+
+```java
+package io;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+/**
+ * 缓冲字符流
+ * java.io.BufferedWriter和BufferedReader
+ * 缓冲字符流内部也有一个数组用于块读写文本数据来提高读写效率
+ *
+ * java.io.PrintWriter具有自动行刷新的缓冲字符输出流并且可以按行写出字符串,其内部总是
+ * 连接这BufferedWriter作为缓冲加速
+ */
+public class PWDemo {
+    public static void main(String[] args) throws FileNotFoundException {
+        /*
+            提供了对文件写操作的构造方法
+            PrintWriter(File file)
+            PrintWriter(String filename)
+         */
+        //对文件pw.txt写操作
+        PrintWriter pw = new PrintWriter("pw.txt");
+
+        pw.println("万丈高楼平地起,辉煌只能靠自己~");
+        pw.println("社会很单纯,复杂滴是人~");
+        pw.println("嘿~巴扎黑~");
+        System.out.println("写出完毕!");
+        pw.close();
+
+    }
+}
+```
+
+##### 在流链接中使用PW
+
+```java
+package io;
+
+import java.io.*;
+
+public class PWDemo2 {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+        //低级流,负责将字节写入文件
+        FileOutputStream fos = new FileOutputStream("pw.txt");
+        //负责衔接其他字符流与字节流
+        OutputStreamWriter osw = new OutputStreamWriter(fos,"UTF-8");
+        //负责块写文本数据加速
+        BufferedWriter bw = new BufferedWriter(osw);
+        //负责按行写出字符串,自动行刷新
+        PrintWriter pw = new PrintWriter(bw);
+        /*
+            上述流连接后,pw.println("你好")的写出过程:
+            "你好"---pw--->"你好\n"---bw--->加速写---osw--->字节---fos--->写入文件
+                   按行写          缓冲加速       字符转字节      写入文件
+         */
+        pw.println("你好");
+        pw.println("再见!");
+
+        pw.close();
+    }
+}
+```
+
+##### PrintWriter的自动行刷新功能
+
+如果实例化PW时第一个参数传入的是一个流，则此时可以再传入一个boolean型的参数，此值为true时就打开了自动行刷新功能。 即: 每当我们用PW的println方法写出一行字符串后会自动flush.
+
